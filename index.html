@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home Page</title>
+	<script type="text/javascript" src="movieScript.js"></script>
+	<link rel="stylesheet" type="text/css" href="movieStyle.css">
+</head>
+<body>
+<div id="main" class="container">
+Enter a movie title: <input type="text" id="movieInput">
+  <button id="button" type="button" onclick="get_movie_data_button_clicked()">Search Movies</button>
+  <div id="id01" class="modal">
+    <div class="modal-content animate-opacity">
+      <div class="container">
+        <span onclick="closeModal()" class="button display-topright">&times;</span>
+        <div id="modalMain"></div>
+        
+      </div>
+    </div>
+  </div>
+  <div id="footer"></div>
+</div>
+</body>
+</html>
