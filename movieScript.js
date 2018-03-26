@@ -12,7 +12,7 @@ function get_movie_data_button_clicked(){
 		if (this.readyState == 4 && this.status ==200) {
 			var jsonObj = JSON.parse(this.responseText);
 			console.log(jsonObj);
-			displaySearchResults(jsonObj);
+			displayCardResults(jsonObj);
 		}
 	}
 
@@ -161,5 +161,74 @@ function closeModal() {
 	var myNode = document.getElementById("modalMain");
 	while (myNode.firstChild) {
     	myNode.removeChild(myNode.firstChild);
+	}
+}
+
+function displayCardResults(jsonObj) {
+	//delete previous results, if any.
+	var results = document.getElementById("results");
+	while (results.firstChild){
+		results.removeChild(results.firstChild);
+	}
+
+	//loop through results
+	for (var i = 0; i < jsonObj.Search.length; i++) {
+		//create card
+		var card = document.createElement('div');
+		card.classList.add("movie-card");
+		card.classList.add("col-3");
+
+		//create card content
+		var cardContent = document.createElement('div');
+		cardContent.classList.add("movie-card-content");
+
+		//create title element
+		var titleElem = document.createElement("h2");
+
+		//create title node
+		var titleNode = document.createTextNode(jsonObj.Search[i].Title);
+
+		//append title node to title element
+		titleElem.appendChild(titleNode);
+
+		//append title element to card content
+		cardContent.appendChild(titleElem);
+
+		//create year element
+		var yearElem = document.createElement("h4");
+
+		//create year text node
+		var yearNode = document.createTextNode(jsonObj.Search[i].Year);
+
+		//append year node to year element
+		yearElem.appendChild(yearNode);
+
+		//append year element to card content
+		cardContent.appendChild(yearElem);
+
+		//create img element for poster
+		var poster = document.createElement("img");
+		poster.src = jsonObj.Search[i].Poster;
+		poster.classList.add("poster");
+
+		//append poster to card content
+		cardContent.appendChild(poster);
+
+		//create button
+		var button = document.createElement("div");
+		var imdbID = jsonObj.Search[i].imdbID;
+		button.innerHTML = '<button class="btn" onclick="getGoodResults(\''+ imdbID +'\')">Is it Good?</button>';
+
+		
+
+		cardContent.appendChild(button);
+
+		//append card content to card
+		card.appendChild(cardContent);
+
+		//append card to results
+		document.getElementById("results").appendChild(card);
+
+
 	}
 }
