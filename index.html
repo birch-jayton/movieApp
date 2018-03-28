@@ -5,16 +5,42 @@
 	<script type="text/javascript" src="movieScript.js"></script>
 	<link rel="stylesheet" type="text/css" href="movieStyle.css">
 	<link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+  <div class="header">
+    is it good?
+  </div>
+  <div id="navbar" class="topnav">
+    <div class="search">
+      <input type="text" placeholder= "Enter movie title..." id="movieInput"><button id="button" type="button" onclick="get_movie_data_button_clicked()"><i class="fa fa-search"></i></button>
+    </div>
+  </div>
+
 <div id="main" class="container">
-Enter a movie title: <input type="text" id="movieInput">
-  <button id="button" type="button" onclick="get_movie_data_button_clicked()">Search Movies</button>
+  
+<div id="results"; class="flex-container">
+  
+  <div class="movie-card col-3"><div class="movie-card-content"><h2>Star Wars: The Last Jedi</h2><h4>2017</h4><img src="https://ia.media-imdb.com/images/M/MV5BMjQ1MzcxNjg4N15BMl5BanBnXkFtZTgwNzgwMjY4MzI@._V1_SX300.jpg" class="poster"><div><button class="btn" onclick="getGoodResults('tt2527336')">Is it Good?</button></div></div></div>
 
-  <div id="results"></div>
+  <div class="movie-card col-3"><div class="movie-card-content"><h2>Spider-Man: Homecoming</h2><h4>2017</h4><img src="https://ia.media-imdb.com/images/M/MV5BNTk4ODQ1MzgzNl5BMl5BanBnXkFtZTgwMTMyMzM4MTI@._V1_SX300.jpg" class="poster"><div><button class="btn" onclick="getGoodResults('tt2250912')">Is it Good?</button></div></div></div>
 
+  <div class="movie-card col-3"><div class="movie-card-content"><h2>Citizen Kane</h2><h4>1941</h4><img src="https://images-na.ssl-images-amazon.com/images/M/MV5BYjBiOTYxZWItMzdiZi00NjlkLWIzZTYtYmFhZjhiMTljOTdkXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg" class="poster"><div><button class="btn" onclick="getGoodResults('tt0033467')">Is it Good?</button></div></div></div>
 
+  <div class="movie-card col-3"><div class="movie-card-content"><h2>Thor: Ragnarok</h2><h4>2017</h4><img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjMyNDkzMzI1OF5BMl5BanBnXkFtZTgwODcxODg5MjI@._V1_SX300.jpg" class="poster"><div><button class="btn" onclick="getGoodResults('tt3501632')">Is it Good?</button></div></div></div>
+
+  <div class="movie-card col-3"><div class="movie-card-content"><h2>The Lion King</h2><h4>1994</h4><img src="https://ia.media-imdb.com/images/M/MV5BYTYxNGMyZTYtMjE3MS00MzNjLWFjNmYtMDk3N2FmM2JiM2M1XkEyXkFqcGdeQXVyNjY5NDU4NzI@._V1_SX300.jpg" class="poster"><div><button class="btn" onclick="getGoodResults('tt0110357')">Is it Good?</button></div></div></div>
+
+  <div class="movie-card col-3"><div class="movie-card-content"><h2>Ocean's Eleven</h2><h4>2001</h4><img src="https://images-na.ssl-images-amazon.com/images/M/MV5BYzVmYzVkMmUtOGRhMi00MTNmLThlMmUtZTljYjlkMjNkMjJkXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg" class="poster"><div><button class="btn" onclick="getGoodResults('tt0240772')">Is it Good?</button></div></div></div>
+
+  <div class="movie-card col-3"><div class="movie-card-content"><h2>Iron Man</h2><h4>2008</h4><img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SX300.jpg" class="poster"><div><button class="btn" onclick="getGoodResults('tt0371746')">Is it Good?</button></div></div></div>
+
+  <div class="movie-card col-3"><div class="movie-card-content"><h2>Hot Rod</h2><h4>2007</h4><img src="https://images-na.ssl-images-amazon.com/images/M/MV5BNjYwNjA3OTY0Nl5BMl5BanBnXkFtZTcwNDMyNDUzMw@@._V1_SX300.jpg" class="poster"><div><button class="btn" onclick="getGoodResults('tt0787475')">Is it Good?</button></div></div></div>
+
+</div>
+</div>
+<div class="footer">&#169; Jayton Birch 2018</div>
 
 
 
@@ -22,11 +48,67 @@ Enter a movie title: <input type="text" id="movieInput">
     <div class="modal-content animate-opacity">
       <div class="container">
         <span onclick="closeModal()" class="button display-topright">&times;</span>
-        <div id="modalMain"></div>
+        <div id="modalMain">
+          <h1 id="movieTitle">Movie title</h1>
+          <h4 id="rating">Rated: PG-13</h4>
+          <div id="imdbInfo" class="progressInfo">
+            <img src="imdbLogo.png" id="imdbLogo">
+            <div id="myProgress">
+              <div id="imdbBar"></div>
+            </div> 
+          </div>
+          <div id="metacriticInfo" class="progressInfo">
+            <img src="metacriticLogo.png" id="metacriticLogo">
+            <div id="myProgress">
+              <div id="metacriticBar"></div>
+            </div>
+          </div>
+          <div id="rtInfo" class="progressInfo">
+            <img src="rtLogo.png" id="rtLogo">
+            <div id="myProgress">
+              <div id="rtBar"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5 infoBox"">
+              <h2>Box Office:</h2>
+              <h3 id="boxOffice"></h3>
+            </div>
+            <div class="col-7 infoBox">
+              <h2>Awards:</h2>
+              <h3 id="awards"></h3>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div id="footer"></div>
-</div>
+ 
+<script>
+
+// click button on enter press
+var input = document.getElementById("movieInput");
+input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("button").click();
+    }
+});
+
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+
+</script>
+
 </body>
 </html>

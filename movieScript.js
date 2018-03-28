@@ -138,33 +138,38 @@ function getGoodResults(movieId) {
 }
 
 function showGoodResults(jsonObj) {
-	var x;
+	document.getElementById("movieTitle").innerHTML = jsonObj.Title;
+	document.getElementById("rating").innerHTML = "Rated: " + jsonObj.Rated;
+	document.getElementById("awards").innerHTML = jsonObj.Awards;
+	document.getElementById("boxOffice").innerHTML = jsonObj.BoxOffice;
 	for (var i = 0; i < jsonObj.Ratings.length; i++){
-		//Add source
-		var sourceElem = document.createElement("h2");
-		var sourceNode = document.createTextNode(jsonObj.Ratings[i].Source);
-		sourceElem.appendChild(sourceNode);
-		document.getElementById("modalMain").appendChild(sourceElem);
-
-		//add rating
-		var ratingElem = document.createElement("p");
-		var ratingNode = document.createTextNode(jsonObj.Ratings[i].Value);
-		ratingElem.appendChild(ratingNode);
-		document.getElementById("modalMain").appendChild(ratingElem);
+		if(jsonObj.Ratings[i].Source == "Internet Movie Database"){
+			document.getElementById("imdbInfo").style.display = 'block';
+			showImdbProgress(jsonObj.Ratings[i].Value);
+		}
+		if(jsonObj.Ratings[i].Source == "Rotten Tomatoes"){
+			document.getElementById("rtInfo").style.display = 'block';
+			showRtProgress(jsonObj.Ratings[i].Value)
+		}
+		if(jsonObj.Ratings[i].Source == "Metacritic"){
+			document.getElementById("metacriticInfo").style.display = 'block';
+			showMetacriticProgress(jsonObj.Ratings[i].Value);
+		}
 	}
-	document.getElementById('id01').style.display='block'
+
+	document.getElementById('id01').style.display='block';
 
 }
 
 function closeModal() {
 	document.getElementById('id01').style.display='none';
-	var myNode = document.getElementById("modalMain");
-	while (myNode.firstChild) {
-    	myNode.removeChild(myNode.firstChild);
-	}
 }
 
 function displayCardResults(jsonObj) {
+	// go back to top
+	document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
 	//delete previous results, if any.
 	var results = document.getElementById("results");
 	while (results.firstChild){
@@ -230,5 +235,91 @@ function displayCardResults(jsonObj) {
 		document.getElementById("results").appendChild(card);
 
 
+	}
+}
+
+function showImdbProgress(score) {
+	//convert score to percentage
+	var scoreNum = "";
+	for (var i = 0; score[i] != '/'; i++) {
+		scoreNum += score[i];
+	}
+	scoreNum = Number(scoreNum);
+	scoreNum = scoreNum * 10;
+
+	//animate the bar
+	var elem = document.getElementById("imdbBar");   
+	var width = 1;
+	var id = setInterval(frame, 20);
+	function frame() {
+	  if (width >= scoreNum) {
+	    clearInterval(id);
+	  } else {
+	    width++; 
+	    elem.style.width = width + '%';
+	    elem.innerHTML =  width / 10 + " / 10";
+	  }
+	}
+}
+
+function showMetacriticProgress(score) {
+	//convert score to percentage
+	var scoreNum = "";
+	for (var i = 0; score[i] != '/'; i++) {
+		scoreNum += score[i];
+	}
+	scoreNum = Number(scoreNum);
+
+	//animate the bar
+	var elem = document.getElementById("metacriticBar");   
+	var width = 1;
+	var id = setInterval(frame, 20);
+	function frame() {
+	  if (width >= scoreNum) {
+	    clearInterval(id);
+	  } else {
+	    width++; 
+	    if (width < 30) {
+	    	elem.style.backgroundColor = "red";
+	    }
+	    else if (width > 30 && width < 60) {
+	    	elem.style.backgroundColor = "#e5b03d";
+	    } else {
+	    	elem.style.backgroundColor = "green";
+	    }
+
+	    elem.style.width = width + '%'; 
+	    elem.innerHTML =  width + " / 100";
+	  }
+	}
+}
+
+function showRtProgress(score) {
+	//convert score to percentage
+	var scoreNum = "";
+	for (var i = 0; score[i] != '%'; i++) {
+		scoreNum += score[i];
+	}
+	scoreNum = Number(scoreNum);
+
+	//animate the bar
+	var elem = document.getElementById("rtBar");   
+	var width = 1;
+	var id = setInterval(frame, 20);
+	function frame() {
+	  if (width >= scoreNum) {
+	    clearInterval(id);
+	  } else {
+	    width++;
+	    if (width > 60) {
+	    	elem.style.backgroundColor = "#FA320A";
+	    	elem.innerHTML = width * 1 + '%  FRESH';
+	    } else {
+	    	elem.style.backgroundColor = "#4CAF50";
+	    	elem.innerHTML = width * 1 + '%  ROTTEN';
+	    }
+	    elem.style.width = width + '%'; 
+	    
+	  }
 	}
 }

@@ -1,12 +1,25 @@
 body {
 	font-family: 'Arimo', sans-serif;
 	background-color: #3A647F;
+	margin: 0;
+	padding: 0;
+}
+
+.header {
+	padding: 30px;
+  	text-align: center;
+  	background-color: #f44336;
+  	color: white;
+  	font-style: bold;
+  	font-size: 40px;
+  	margin: 0;
 }
 
 .modal {
 	z-index:3;
 	display:none;
 	padding-top:100px;
+	padding-bottom: 100px;
 	position:fixed;
 	left:0;top:0;
 	width:100%;
@@ -14,13 +27,14 @@ body {
 	overflow:auto;
 	background-color:rgb(0,0,0);
 	background-color:rgba(0,0,0,0.4);
+
 }
 .modal-content {
 	margin:auto;
 	background-color:#fff;
 	position:relative;
 	padding:0;outline:0;
-	width:600px;
+	width: 85%;
 }
 
 .animate-opacity{animation:opac 0.8s}
@@ -28,7 +42,7 @@ body {
 @keyframes opac{from{opacity:0} to{opacity:1}}
 
 .button {
-	border:none;
+	
 	display:inline-block;
 	padding:8px 16px;
 	vertical-align:middle;
@@ -39,6 +53,8 @@ body {
 	text-align:center;
 	cursor:pointer;
 	white-space:nowrap;
+	border-radius: 0px 30px 30px 0px;
+
 }
 
 .display-topright {
@@ -47,7 +63,12 @@ body {
 	top:0;
 }
 
-.container {padding:0.01em 16px}
+.container {
+	padding:0.01em 16px;
+	padding-top: 9px;
+	padding-bottom: 9px; 
+	display:block;
+}
 
 .movie-card {
 	margin: inherit;
@@ -90,11 +111,6 @@ body {
 	
 }
 
-.row{
-	display: table;
-	width: 100%;
-}
-
 * {
     box-sizing: border-box;
 }
@@ -102,6 +118,10 @@ body {
     content: "";
     clear: both;
     display: block;
+}
+
+.row {
+	
 }
 [class*="col-"] {
     float: left;
@@ -126,4 +146,160 @@ body {
     [class*="col-"] {
         width: 100%;
     }
+}
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.search {
+	padding: 6px 10px;
+ 	margin-top: 0px;
+ 	margin-bottom: 8px;
+ 	margin-right: auto;
+ 	margin-left: auto;
+ 	text-align: center;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #f44336;
+  border-bottom: 1px solid #ffa9a3;
+}
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.topnav .search button {
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+i {
+	color: #f44336;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .container {
+  padding-top: 60px;
+}
+
+#movieInput {
+	border-radius: 30px 0px 0px 30px;
+	border-bottom: 1px solid #ffa9a3;
+	border-top: 1px solid #ffa9a3;
+	border-left: 1px solid #ffa9a3;
+}
+
+#button:hover {
+	background: #ccc;
+}
+
+#button {
+	border-radius: 0px 30px 30px 0px;
+	border-bottom: 1px solid #ffa9a3;
+	border-top: 1px solid #ffa9a3;
+	border-right: 1px solid #ffa9a3;
+}
+
+.footer {
+	padding: 30px;
+  	text-align: center;
+  	background-color: #f44336;
+  	color: white;
+  	font-style: bold;
+  	font-size: 16px;
+  	margin-top:18px;
+}
+
+.logo-container {
+
+}
+
+.logo {
+	width: 100px;
+	height: auto;
+}
+
+#myProgress {
+  width: 100%;
+  background-color: #ddd; 
+}
+
+#imdbBar {
+  width: 1%;
+  height: 30px;
+  background-color: #e5b03d;
+  text-align: center; 
+  line-height: 30px; 
+  color: white; 
+}
+
+#metacriticBar {
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+  text-align: center; 
+  line-height: 30px; 
+  color: white;
+}
+
+#rtBar {
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+  text-align: center; 
+  line-height: 30px; 
+  color: white;
+}
+
+.modal-row {
+	display: flex;
+	align-items: stretch;
+}
+
+#imdbLogo {
+	width: 50px;
+}
+
+#metacriticLogo {
+	width: 100px;
+	margin-top: 16px;
+
+}
+
+#rtLogo {
+	width: 100px;
+	background-color: #FA320A;
+	border-radius: 8px;
+	margin-top: 16px;
+}
+
+.infoBox {
+	overflow-wrap: break-word;
+	text-align: center;
+}
+
+#movieTitle {
+	text-align: center;
+}
+
+#rating{
+	text-align: center;
+}
+
+.progressInfo {
+	display: none;
 }
